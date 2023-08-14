@@ -36,6 +36,15 @@ function Item(props) {
     props.setCartItems(newCartItems);
   };
 
+  const removeFromCart = (e) => {
+    e.preventDefault();
+    let newCartItems = [...props.cartItems];
+    let index = newCartItems.findIndex((e) => e.id === props.item.id);
+    newCartItems.splice(index, 1);
+
+    props.setCartItems(newCartItems);
+  };
+
   return (
     <li>
       <img src={props.item.image} alt="" />
@@ -51,7 +60,8 @@ function Item(props) {
               onChange={(e) => setItemsNumber(e.target.value)}
             />
             <button onClick={onIncreaseItems}>+</button>
-            <button onClick={onAddToCart}>Add to cart</button>
+            {!props.cart && <button onClick={onAddToCart}>Add to cart</button>}
+            {props.cart && <button onClick={removeFromCart}>Remove</button>}
           </form>
         </div>
       </div>
@@ -63,6 +73,7 @@ Item.propTypes = {
   item: PropTypes.object,
   setCartItems: PropTypes.func,
   cartItems: PropTypes.array,
+  cart: PropTypes.bool,
 };
 
 export default Item;

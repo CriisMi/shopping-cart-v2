@@ -50,6 +50,7 @@ const Cart = () => {
               item={item}
               cartItems={cartItems}
               setCartItems={setCartItems}
+              cart={true}
             />
           ))}
       </ul>
