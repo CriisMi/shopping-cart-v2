@@ -56,7 +56,7 @@ function Item(props) {
     if (index > -1) {
       newCartItems[index].qty += itemsNumber;
     } else {
-      newCartItems.push({ id: props.item.id, qty: itemsNumber });
+      newCartItems.push({ ...props.item, qty: itemsNumber });
     }
 
     props.setCartItems(newCartItems);

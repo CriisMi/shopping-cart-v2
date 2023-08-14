@@ -40,6 +40,11 @@ const Cart = () => {
     fullCartItems.push(items[parseInt(cartItems[i].id) - 1]);
   }
 
+  let totalCost = cartItems
+    .map((item) => item.qty * item.price)
+    .reduce((prev, next) => prev + next, 0)
+    .toFixed(2);
+
   return (
     <div>
       <ul>
@@ -54,7 +59,7 @@ const Cart = () => {
             />
           ))}
       </ul>
-      <div>Total: $</div>
+      <div>Total: {totalCost}$</div>
       <div>CheckOut</div>
     </div>
   );
