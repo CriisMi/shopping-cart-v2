@@ -3,7 +3,19 @@ import { useState } from "react";
 import "../styles/Item.css";
 
 function Item(props) {
-  const [itemsNumber, setItemsNumber] = useState(0);
+  let cartItemsNumber = 0;
+  if (props.cart) {
+    let index = props.cartItems.findIndex((e) => e.id === props.item.id);
+    cartItemsNumber = props.cartItems[index].qty;
+  }
+
+  const [itemsNumber, setItemsNumber] = useState(() => {
+    if (props.cart) {
+      return cartItemsNumber;
+    } else {
+      return 0;
+    }
+  });
 
   const onDecreaseItems = (e) => {
     e.preventDefault();
@@ -11,11 +23,25 @@ function Item(props) {
       return;
     }
     setItemsNumber(itemsNumber - 1);
+
+    if (props.cart) {
+      let newCartItems = [...props.cartItems];
+      let index = newCartItems.findIndex((e) => e.id === props.item.id);
+
+      newCartItems[index].qty -= 1;
+      props.setCartItems(newCartItems);
+    }
   };
 
   const onIncreaseItems = (e) => {
     e.preventDefault();
     setItemsNumber(itemsNumber + 1);
+    if (props.cart) {
+      let newCartItems = [...props.cartItems];
+      let index = newCartItems.findIndex((e) => e.id === props.item.id);
+      newCartItems[index].qty += 1;
+      props.setCartItems(newCartItems);
+    }
   };
 
   const onAddToCart = (e) => {
