@@ -38,7 +38,7 @@ function Shop() {
   if (loading) return <p>Loading...</p>;
 
   return (
-    <div>
+    <div className="shop">
       <div className="body">
         <main>
           <ul>

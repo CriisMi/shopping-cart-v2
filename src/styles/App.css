@@ -1,0 +1,13 @@
+.homep {
+  background-image: url(../assets/happy-white-girl-sitting-terrace-with-tasty-croissant-photo-laughing-young-woman-having-breakfast-balcony.jpg);
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  padding: 40px;
+}
+
+.shop,
+.cart {
+  height: 100vh;
+  padding: 40px;
+}
